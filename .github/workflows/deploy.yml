@@ -1,0 +1,48 @@
+name: Exercise time!
+on: push
+jobs:  
+  lints:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: install NodeJs
+        uses: actions/setup-node@v3
+        with: 
+          node-version: 18 
+      - name: install dependciesls
+        run: npm ci
+      - name: run lints
+        run: npm lints   
+  tests:
+    needs: lints
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: install NodeJs
+        uses: actions/setup-node@v3
+        with: 
+          node-version: 18 
+      - name: install dependciesls
+        run: npm ci
+      - name: run tests
+        run: npm test        
+  deploy:
+    needs: [lints, tests]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: install NodeJs
+        uses: actions/setup-node@v3
+        with: 
+          node-version: 18 
+      - name: install dependciesls
+        run: npm ci
+      - name: Build project
+        run: npm run build 
+      - name: deploy
+        run: echo "Deploying....."       
+
+
