@@ -13,7 +13,7 @@ jobs:
       - name: install dependciesls
         run: npm ci
       - name: run lints
-        run: npm run lints   
+        run: npm run lint  
   tests:
     needs: lints
     runs-on: ubuntu-latest
