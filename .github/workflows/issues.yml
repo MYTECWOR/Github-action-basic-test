@@ -1,8 +1,8 @@
-name: Output the meta data
+name: Handle issues
 on: issues
 jobs:
   info:
     runs-on: ubuntu-latest
     steps:
-      - name: Output my Github context
+      - name: Output event details
         run: echo "${{ toJSON(github) }}"
